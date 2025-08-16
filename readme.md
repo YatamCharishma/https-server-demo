@@ -1,12 +1,8 @@
-# 🚀 HTTPS Server Demo(TypeScript + Express + mkcert)
+#  HTTPS Server Demo(TypeScript + Express + mkcert)
 
 A simple ** HTTPS server ** built with ** Express ** and ** TypeScript **, using[mkcert]to generate trusted SSL certificates for local development. This avoids browser warnings (*Not Secure*) when testing APIs or OAuth callbacks locally.  
 
-    ---
 
-## ⚡ Quick Start
-
-    ```bash
 # 1. Create project
 mkdir https-server-demo && cd https-server-demo
 npm init -y
