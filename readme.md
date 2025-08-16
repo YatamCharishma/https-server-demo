@@ -23,48 +23,10 @@ mkcert -install
 mkcert localhost   # creates localhost.pem & localhost-key.pem
 
 # 5. Create tsconfig.json
-cat > tsconfig.json <<EOL
-{
-  "compilerOptions": {
-    "target": "ES2020",
-    "module": "CommonJS",
-    "moduleResolution": "Node",
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "outDir": "dist"
-  },
-  "include": ["src"],
-  "exclude": ["node_modules"]
-}
-EOL
 
 # 6. Create source file
-mkdir src
-cat > src/server.ts <<EOL
-import express, { Request, Response } from 'express';
-import https from 'https';
-import fs from 'fs';
-import path from 'path';
-
-const app = express();
-
-app.get('/', (req: Request, res: Response) => {
-  res.send('Hello from HTTPS 🚀 (TypeScript + Express)');
-});
-
-const httpsOptions = {
-  key: fs.readFileSync(path.join(process.cwd(), 'localhost-key.pem')),
-  cert: fs.readFileSync(path.join(process.cwd(), 'localhost.pem')),
-};
-
-https.createServer(httpsOptions, app).listen(3000, () => {
-  console.log('✅ HTTPS server running at https://localhost:3000');
-});
-EOL
 
 # 7. Add npm scripts
-npx json -I -f package.json -e 'this.scripts={dev:"ts-node src/server.ts",build:"tsc",start:"node dist/server.js"}'
 
 # 8. Run dev server
 npm run dev
